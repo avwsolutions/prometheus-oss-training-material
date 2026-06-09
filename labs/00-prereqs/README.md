@@ -47,18 +47,12 @@ Most excises require development skills. That's why it's good to prepare your en
 winget install --id=Git.Git  -e
 ```
 
-### 3.2 - Optional - Install Sysmon
-
-```
-winget install --id=Microsoft.Sysinternals.Sysmon  -e
-```
-
-### 3.3 - Optional - Install VS Code
+### 3.2 - Optional - Install VS Code
 
 ```
 winget install --id=Microsoft.VisualStudioCode  -e
 ```
-### 3.4 - Optional - Install PowerShell 7
+### 3.3 - Optional - Install PowerShell 7
 
 ```
 winget install --id=Microsoft.PowerShell  -e
