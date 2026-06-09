@@ -8,7 +8,7 @@ If you are unable to complete certain exercises, no problem. You can always comp
 
 | #   | Lab Name                                                                             | Description                                                                                                                                                                                                                                                                             |
 |------|--------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0   | [Prerequisites](00-prereqs/README.md) | Prereqs to setup the environment|
+| 0   | [Prerequisites](00-prereqs/README.md) | Prereqs to setup the playground environment.|
 | 1   | [Observability Primer](01-ObservabilityPrimer/README.md)| In this lab during the exercises attendees will learn about Observability concepts and strategy.|
 | 2   | [Prometheus Introduction](02-PrometheusIntro/README.md) | In this lab during the exercises attendees will learn about the Prometheus package and basic usage.|
 | 3   | [Prometheus Foundation](03-PrometheusFoundation/README.md) | In this lab during the exercises attendees will learn about Prometheus concepts, architecture, storage and more.|

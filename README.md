@@ -20,4 +20,4 @@ Additionally I want to give credits to the Prometheus community and my community
 
 Enjoy the training labs!!!
 
-<img src="https://raw.githubusercontent.com/avwsolutions/promethues-oss-training-material/main/sample-screen.png" alt="sample-screen">
+<img src="https://raw.githubusercontent.com/avwsolutions/prometheus-oss-training-material/main/sample-screen.png" alt="sample-screen">

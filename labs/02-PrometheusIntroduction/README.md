@@ -199,6 +199,6 @@ time=2026-05-26T09:54:58.596Z level=INFO source=main.go:1671 msg="Completed load
 
 ## Next Steps
 
-You are ready to start with the second lab about [Prometheus Introduction](../02-PrometheusIntroduction/README.md) for Prometheus OSS. Be aware that the trainer might have to explain the training material and provide additional instructions for a jump start.
+You are ready to start with the next lab about [Prometheus Foundation](../03-PrometheusFoundation/README.md) for Prometheus OSS. Be aware that the trainer might have to explain the training material and provide additional instructions for a jump start.
 
 Enjoy the exercises!!!
