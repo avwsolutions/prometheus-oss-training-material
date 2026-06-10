@@ -160,7 +160,9 @@ Now answer the following questions:
 - What is the default *Storage Retention* set by Prometheus?
 - Do you have any *WAL Corruptions*?
 
-Before you are going through the last questions, let's explain the `Prometheus Configuration` page. As you already seen it's formatted as **YAML** and contains several *Configuration sections*. *Global* section helps to *provide defaults*, such as intervals, limits, labels or timeouts for all underlying sections like *runtime*, *storage* and others that extend functionality like *alerting*, *scrape_configs* and *oltp*.
+### Exercise 2.4 - Updating Server Configuration
+
+Before you are going to the next lab, let's explain the `Prometheus Configuration` page. As you already seen it's formatted as **YAML** and contains several *Configuration sections*. *Global* section helps to *provide defaults*, such as intervals, limits, labels or timeouts for all underlying sections like *runtime*, *storage* and others that extend functionality like *alerting*, *scrape_configs* and *oltp*.
 
 It's important to understand that it provides the *full configuration*, rather then the *provided configuration*.
 
@@ -180,7 +182,6 @@ Now do the following tasks:
 ```
 storage:
   tsdb:
-    out_of_order_time_window: 30d
     retention:
       time: 7d
 ```
@@ -194,8 +195,6 @@ time=2026-05-26T09:54:58.596Z level=INFO source=main.go:1671 msg="Completed load
 ```
 
 - Now refresh the configuration page and verify that your changes have been applied.
-- You may see two *outofordertimewindow* settings being applied. Explain what is the difference.
-
 
 ## Next Steps
 
