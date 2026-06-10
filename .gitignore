@@ -2,3 +2,4 @@
 virt/*
 docker/*
 *.7z
+.env
