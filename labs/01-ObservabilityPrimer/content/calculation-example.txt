@@ -1,0 +1,12 @@
+Example: A service has a 99.95% monthly availability SLO over 30 days.
+
+Error budget (%) = 100% - 99.95% = 0.05%
+SLO window = 30 days × 24 hr/day × 60 min/hr = 43,200 minutes
+Absolute error budget (time) = 0.05% × 43,200 min = 0.0005 × 43,200 = 21.6 minutes/month
+
+
+Example: B service has a 99.9% monthly availability SLO over 30 days.
+
+Error budget (%) = 100% - 99.9% = 0.1%
+SLO window = 30 days × 24 hr/day × 60 min/hr = 43,200 minutes
+Absolute error budget (time) = 0.1% × 43,200 min = 0.001 × 43,200 = 43,2 minutes/month
