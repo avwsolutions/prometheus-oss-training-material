@@ -178,7 +178,7 @@ crm_processing_status_code{role="processing-host",customer="foobar"} 200
 crm_processing_customer_info{role="processing-host",customer="foobar"} 1
 ```
 
-If you configured the textfile collector correctly these will show up in Prometheus.
+If you configured the textfile collector correctly these will show up in Prometheus. Ensure that the file ends with a empty line and uses **LF**.
 
 ## Next Steps
 
