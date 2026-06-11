@@ -134,6 +134,9 @@ Complete the following tasks:
 
 Ensure you have updated and restarted Prometheus to pickup the configuration and validate using the **probe_http__** metrics if the actual returned code is what you expect.
 
+If you want to learn more about `Blackbox Exporter` just read the [Github documentation](https://github.com/prometheus/blackbox_exporter).
+
+
 ## Exercise 3 - implement a textfile collector
 
 This last exercise you get introduced in using the `Textfile collector`. It's an helpful collector when you have applications that can write their own metrics to a *.prom* file.
