@@ -165,8 +165,8 @@ Also at the `Node Exporter` service. Ensure this is part of the *command* sectio
 You may want to run the script or just copy the following to a file called `localApp.prom`.
 
 ```
-# HELP crm_processing_time Processing time in milliseconds
-# TYPE crm_processing_time gauge
+# HELP crm_processing_time_milliseconds Processing time in milliseconds
+# TYPE crm_processing_time_milliseconds gauge
 crm_processing_time_milliseconds{role="processing-host",customer="foobar"} 125
 
 # HELP crm_processing_status_code Processing status code
