@@ -1,0 +1,11 @@
+# HELP crm_processing_time_milliseconds Processing time in milliseconds
+# TYPE crm_processing_time_milliseconds gauge
+crm_processing_time_milliseconds{role="processing-host",customer="foobar"} 125
+
+# HELP crm_processing_status_code Processing status code
+# TYPE crm_processing_status_code gauge
+crm_processing_status_code{role="processing-host",customer="foobar"} 200
+
+# HELP crm_processing_customer_info Customer information metric
+# TYPE crm_processing_customer_info gauge
+crm_processing_customer_info{role="processing-host",customer="foobar"} 1

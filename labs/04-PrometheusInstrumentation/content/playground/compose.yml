@@ -1,0 +1,87 @@
+name: ${COMPOSE_NAME}
+
+networks:
+  default:
+    name: ${MONITORING_NETWORK}
+    external: false
+
+volumes:
+  prometheusdata:
+    driver: local
+  alertmanagerdata:
+    driver: local
+  grafanadata:
+    driver: local
+
+services:
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    container_name: prometheus
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=${PROMETHEUS_RETENTION}"
+      - "--web.enable-lifecycle"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheusdata:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    depends_on:
+      - alertmanager
+      - blackbox-exporter
+      - node-exporter
+      - pushgateway
+
+  alertmanager:
+    image: prom/alertmanager:${ALERTMANAGER_VERSION}
+    container_name: alertmanager
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+      - "--storage.path=/alertmanager"
+    volumes:
+      - ./config/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanagerdata:/alertmanager
+    ports:
+      - "${ALERTMANAGER_PORT}:9093"
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:${BLACKBOX_EXPORTER_VERSION}
+    container_name: blackbox-exporter
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/blackbox_exporter/config.yml"
+    volumes:
+      - ./config/exporters/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+    ports:
+      - "${BLACKBOX_EXPORTER_PORT}:9115"
+
+  node-exporter:
+    image: prom/node-exporter:${NODE_EXPORTER_VERSION}
+    container_name: node-exporter
+    restart: ${RESTART_POLICY}
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--collector.sysctl'
+      - '--collector.sysctl.include=vm.swappiness'
+      - '--collector.textfile.directory=/var/lib/node_exporter/textfile_collector/'
+    pid: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - ./config/exporters/textfile_collector:/var/lib/node_exporter/textfile_collector/:ro
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
+
+  pushgateway:
+    image: prom/pushgateway:${PUSHGATEWAY_VERSION}
+    container_name: pushgateway
+    restart: ${RESTART_POLICY}
+    ports:
+      - "${PUSHGATEWAY_PORT}:9091"
