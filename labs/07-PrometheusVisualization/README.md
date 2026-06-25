@@ -76,11 +76,42 @@ Complete the following tasks to implement your first *recording rule*.
 
 ### Exercise 2.2 - Create your awesome dashdboard with aggregated metrics
 
-This last exercise you are going to use the previous created *aggregated metrics* to create panels for them and store them in your *Awesome dashboard*.
+This last exercise ( if you skip the bonus :)  you are going to use the previous created *aggregated metrics* to create panels for them and store them in your *Awesome dashboard*.
 
 I do think the actual *metric* names you can get from the recordings and Grafana will guide you through the setup.
 
 Share the result with the other participants.
+
+### Bonus Exercise 2.3 - Create your own Service-Level Objectives
+
+This exercise you can add how own `SLO`. You may remember the format. Below an example `SLI` query.
+
+Availability of your `node-exporter`
+```
+sum_over_time(up{job="node-exporter", instance="node-exporter:9100"}[30d]) / count_over_time(up{job="node-exporter", instance="node-exporter:9100"}[30d])
+```
+
+CPU Saturation (exlcuding *iowait*.)
+```
+sum(rate(node_cpu_seconds_total{mode!="idle", mode!="iowait"}[5m])) / sum(rate(node_cpu_seconds_total[5m]))
+```
+
+Example alert.
+
+```
+groups:
+- name: node_slo_alerts
+  rules:
+  - alert: NodeAvailabilityHighBurn
+    expr: sum(rate(up{job="node_exporter"}[1h])) < 0.999 * 14.4
+    for: 10m
+    labels:
+      severity: critical
+```
+Complete the following tasks:
+
+- Implement the node-exporter SLO.
+- Take the SLO value you picked during the first lab.
 
 ## Exercise 3 - Import and customize community dashboards
 
