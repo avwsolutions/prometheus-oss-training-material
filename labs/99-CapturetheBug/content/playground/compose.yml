@@ -1,0 +1,37 @@
+name: ${COMPOSE_NAME}
+
+networks:
+  default:
+    name: ${MONITORING_NETWORK}
+    external: false
+
+volumes:
+  prometheusdata:
+    driver: local
+
+services:
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    container_name: prometheus
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus/data"
+      - "--storage.tsdb.retention.time=${PROMETHEUS_RETENTION}"
+      - "--web.enable-lifecycle"
+      - "--web.enable-admin-api"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./data/incidentdata:/prometheus/data
+      - prometheusdata:/prometheus
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+
+  capture-the-bug-exporter:
+    profiles: [reload]
+    build:
+      context: capture-the-bug-exporter
+    container_name: capture-the-bug-exporter
+    restart: ${RESTART_POLICY}
+    ports:
+      - 8000:8000

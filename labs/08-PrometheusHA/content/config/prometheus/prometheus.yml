@@ -1,0 +1,16 @@
+global:
+  external_labels:
+    cluster: central-01
+    prometheus: central  
+  
+  - job_name: federate-prometheus
+    honor_labels: true
+    metrics_path: /federate
+
+    params:
+      "match[]":
+        - '{job="node-exporter1"}'
+
+    static_configs:
+      - targets:
+          - prometheus-federated:9090

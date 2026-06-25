@@ -1,0 +1,1 @@
+docker compose --profile reload up -d

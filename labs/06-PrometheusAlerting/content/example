@@ -1,0 +1,51 @@
+- alert: FilesystemUsageHigh
+  expr: 100 * (1 - (node_filesystem_free_bytes{fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"})) > 40
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Filesystem usage high on {{ $labels.instance }}"
+    description: |
+      Filesystem usage is above 90%.
+
+      Instance: {{ $labels.instance }}
+      Device: {{ $labels.device }}
+      Mountpoint: {{ $labels.mountpoint }}
+
+      Current usage: {{ printf "%.2f" $value }}%
+
+      All filesystems on this host:
+
+      {{ range query (printf `
+        100 - (
+          node_filesystem_avail_bytes{instance="%s",fstype!~"tmpfs|overlay"} * 100
+          / node_filesystem_size_bytes{instance="%s",fstype!~"tmpfs|overlay"}
+        )` $labels.instance $labels.instance) }}
+      - {{ .Labels.mountpoint }}: {{ printf "%.2f" .Value }}%
+      {{ end }}
+
+- alert: InodeUsageHigh
+  expr: 100 * (1 - (node_filesystem_files{fstype!~"tmpfs|overlay"} / node_filesystem_files{fstype!~"tmpfs|overlay"})) > 40
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "Inode usage high on {{ $labels.instance }}"
+    description: |
+      Inode usage is above 90%.
+
+      Instance: {{ $labels.instance }}
+      Device: {{ $labels.device }}
+      Mountpoint: {{ $labels.mountpoint }}
+
+      Current usage: {{ printf "%.2f" $value }}%
+
+      All filesystems on this host:
+
+      {{ range query (printf `
+        100 - (
+          node_filesystem_avail_bytes{instance="%s",fstype!~"tmpfs|overlay"} * 100
+          / node_filesystem_size_bytes{instance="%s",fstype!~"tmpfs|overlay"}
+        )` $labels.instance $labels.instance) }}
+      - {{ .Labels.mountpoint }}: {{ printf "%.2f" .Value }}%
+      {{ end }}

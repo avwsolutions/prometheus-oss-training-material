@@ -1,0 +1,26 @@
+  prometheus-federated:
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    container_name: prometheus-federated
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=7d"
+      - "--web.enable-lifecycle"
+      - "--web.enable-remote-write-receiver"
+    ports:
+      - "9091:9090"
+    volumes:
+      - .config/prometheus-federated/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-federateddata:/prometheus
+
+  prometheus-agent:
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    container_name: prometheus-agent
+    restart: ${RESTART_POLICY}
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--enable-feature=agent"
+    volumes:
+      - ./config/prometheus-agent/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-agentdata:/prometheus

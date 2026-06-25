@@ -1,0 +1,6 @@
+$ curl -XPOST prometheus:9090/api/v1/admin/tsdb/snapshot
+{"status":"success","data":{"name":"20260620T172548Z-78ec94e1b5003cb"}}
+
+$ cd data/snapshots
+$ ls
+20260620T172548Z-78ec94e1b5003cb

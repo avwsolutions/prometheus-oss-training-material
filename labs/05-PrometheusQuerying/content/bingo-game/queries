@@ -1,0 +1,13 @@
+Top 10 Top numbers
+
+topk(10, sum by (number) (prometheus_bingo_draw_total))
+
+Top 10 Lucky numbers
+
+topk(10, sum by (number) (prometheus_bingo_draw_total{bingo="yes"}))
+
+Last day (24h) numbers
+topk(10, increase(prometheus_bingo_draw_total[24h]))
+
+Win ratio calculation
+sum by (number) (prometheus_bingo_draw_total{bingo="yes"}) / sum by (number) (prometheus_bingo_draw_total)

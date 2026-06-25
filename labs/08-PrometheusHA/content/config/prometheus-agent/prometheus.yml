@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+
+  - job_name: node-exporter2
+    static_configs:
+      - targets:
+          - node-exporter2100
+
+remote_write:
+  - url: http://prometheus-federated:9090/api/v1/write

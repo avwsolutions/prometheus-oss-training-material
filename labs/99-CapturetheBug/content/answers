@@ -1,0 +1,12 @@
+topk(1,sum by(service)(increase(http_requests_total{status="500"}[1y])))
+topk(1,increase(service_cpu_usage_percent[1y]))
+topk(1,increase(queue_depth[1y]))
+avg_over_time(service_memory_usage_bytes[1y]) # And search for the breakingpoint using using
+topk(3,increase(db_queries_total[1y]))
+increase(orders_created_total[1y])-increase(orders_completed_total[1y])
+sum by(service, version) (increase(http_requests_total{status="500"}[1y]) * on(service) group_left(version) max by(service, version) (deployment_info))
+
+
+( sum by(service)(increase(http_requests_total{status="500"}[1y]))/sum by(service)(increase(http_requests_total[1y]))) * 100
+( sum by(service)(increase(http_requests_total{status="500"}[1y]))) * on(service) group_left(version) deployment_info
+histogram_quantile(0.95,sum by(le,service)(rate(http_request_duration_seconds_bucket_total[1y])))

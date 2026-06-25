@@ -1,0 +1,13 @@
+groups:
+- name: node-recording-rules
+  rules:
+    - record: node:cpu_utilization:percent
+      expr: 100 - avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100
+    - record: node:memory_utilization:percent
+      expr: 100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes))
+    - record: node:filesystem_utilization:percent
+      expr: 100 * (1 - (node_filesystem_avail_bytes{fstype!=""} / node_filesystem_size_bytes{fstype!=""}))
+    - record: node:network_receive_bytes:rate5m
+      expr: sum by(instance) (rate(node_network_receive_bytes_total{device!="lo"}[5m]))
+    - record: node:disk_read_bytes:rate5m
+      expr: sum by(instance) (rate(node_disk_read_bytes_total[5m]))
