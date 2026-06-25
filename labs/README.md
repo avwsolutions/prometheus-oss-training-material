@@ -16,8 +16,8 @@ If you are unable to complete certain exercises, no problem. You can always comp
 | 5   | [Prometheus Querying](05-PrometheusQuerying/README.md) | In this lab during the exercises attendees will learn about querying data using PromQL and more.|
 | 6   | [Prometheus Alerting](06-PrometheusAlerting/README.md) | In this lab during the exercises attendees will learn about setting up alertmanager, alert rules and notification rules.|
 | 7   | [Prometheus Visualization](07-PrometheusVisualization/README.md) | In this lab during the exercises attendees will learn about setting up visualizations using console templates and Grafana OSS.|
-| 8   | [Prometheus HA and scaling](07-PrometheusHA/README.md) | In this lab during the exercises attendees will learn about setting up Prometheus HA features and scaling methods.|
-| 9   | [Prometheus Administration and Troubleshooting](07-PrometheusAdmin/README.md) | In this lab during the exercises attendees will learn about Prometheus Administration and troubeshooting common issues.|
+| 8   | [Prometheus HA and scaling](08-PrometheusHA/README.md) | In this lab during the exercises attendees will learn about setting up Prometheus HA features and scaling methods.|
+| 9   | [Prometheus Administration and Troubleshooting](09-PrometheusAdmin/README.md) | In this lab during the exercises attendees will learn about Prometheus Administration and troubeshooting common issues.|
 
 ## Prerequisites
 
