@@ -74,7 +74,7 @@ Complete the following tasks to implement your first *recording rule*.
     - Can you query them?
     - Do you recognise the naming?
 
-### Exercise 2.2 - Create your awesome dashdboard with aggregated metrics
+### Exercise 2.2 - Create your awesome dashboard with aggregated metrics
 
 This last exercise ( if you skip the bonus :)  you are going to use the previous created *aggregated metrics* to create panels for them and store them in your *Awesome dashboard*.
 
